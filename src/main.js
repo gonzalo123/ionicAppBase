@@ -1,4 +1,4 @@
-(function (angular) {
+(function () {
     angular.module('gMain', ['main.tpls', 'ionic', 'angular-locker'])
         // providers
         .provider('privateState', function () {
@@ -331,4 +331,4 @@
                 "</ion-view>");
         }]);
 
-})(angular);
+})();
