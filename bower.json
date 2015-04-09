@@ -11,7 +11,7 @@
     "gonzalo123"
   ],
   "main": [
-    "./dist/main.min.js"
+    "./dist/main.js"
   ],
   "ignore": [
     ".jshintrc",

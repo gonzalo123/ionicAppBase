@@ -23,22 +23,12 @@ module.exports = function (grunt) {
         copy: {
             js: {
                 src: 'src/main.js',
-                dest: 'dist/main.js'
-            }
-        },
-
-        uglify: {
-            js: {
-                src: ['src/main.js'],
-                dest: 'dist/main.min.js',
+                dest: 'dist/main.js',
                 options: {
-                    banner: '<%= banner %>',
-                    sourceMap: function (fileName) {
-                        return fileName.replace(/$/, '.map');
-                    }
+                    banner: '<%= banner %>'
                 }
             }
         }
     });
-    grunt.registerTask('build', ['clean', 'jshint', 'copy', 'uglify']);
+    grunt.registerTask('build', ['clean', 'jshint', 'copy']);
 };
