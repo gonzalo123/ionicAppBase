@@ -1,0 +1,31 @@
+{
+  "name": "gonzalo-ionic-app-base",
+  "version": "1.0.0",
+  "authors": [
+    "Gonzalo Ayuso <gonzalo123@gmail.com>"
+  ],
+  "description": "my ionic App Base",
+  "keywords": [
+    "ionic",
+    "angular",
+    "gonzalo123"
+  ],
+  "main": [
+    "./dist/main.min.js"
+  ],
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "angular": "~1",
+    "angular-locker": "~1"
+  },
+  "license": "MIT",
+  "homepage": "http://gonzalo123.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}
