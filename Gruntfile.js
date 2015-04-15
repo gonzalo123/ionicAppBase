@@ -12,13 +12,23 @@ module.exports = function (grunt) {
         'http://github.com/gonzalo123/ionicAppBase - MIT License */\n',
 
         jshint: {
-            files: ['Gruntfile.js', 'src/**.js'],
+            files: ['Gruntfile.js', 'karma.conf.js', 'src/**.js', 'test/**.js'],
             options: {
                 globals: jshintrc
             }
         },
 
         clean: ["dest/"],
+
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                runnerPort: 9999,
+                singleRun: true,
+                browsers: ['PhantomJS'],
+                logLevel: 'ERROR'
+            }
+        },
 
         copy: {
             js: {
@@ -30,5 +40,5 @@ module.exports = function (grunt) {
             }
         }
     });
-    grunt.registerTask('build', ['clean', 'jshint', 'copy']);
+    grunt.registerTask('build', ['clean', 'jshint', 'karma', 'copy']);
 };

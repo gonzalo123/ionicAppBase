@@ -46,26 +46,33 @@
                     return deferred.promise;
                 },
 
-                login: function (userName, password) {
-                    return http.post('/auth/validateCredentials', {user: userName, password: password})
-                        .success(function (response) {
-                            if (response.status) {
-                                user = {
-                                    user: userName,
-                                    token: response.token,
-                                    version: conf.version
-                                };
-                                http.setToken(user.token);
-                                locker.put('user', user);
-                                return user;
-                            } else {
-                                return $q.reject(response);
-                            }
+                getUser: function() {
+                    return user;
+                },
 
-                        })
-                        .error(function (response) {
+                login: function (userName, password) {
+
+                    var request = http.post('/auth/validateCredentials', {user: userName, password: password});
+
+                    request.success(function (response) {
+                        if (response.status) {
+                            user = {
+                                user: userName,
+                                token: response.token,
+                                version: conf.version
+                            };
+                            http.setToken(user.token);
+                            locker.put('user', user);
+                            return user;
+                        } else {
                             return $q.reject(response);
-                        });
+                        }
+                    });
+                    request.error(function (response) {
+                        return $q.reject(response);
+                    });
+
+                    return request;
                 },
 
                 logout: function () {
@@ -164,7 +171,8 @@
 
                     return $http
                         .get(serviceHost + uri, {params: params})
-                        .success(handleSuccess).error(handleHTTPErrors);
+                        .success(handleSuccess)
+                        .error(handleHTTPErrors);
                 },
 
                 post: function (uri, params, hideLoading) {
@@ -174,7 +182,8 @@
                     params = extendParams(params);
                     return $http
                         .post(serviceHost + uri, params)
-                        .success(handleSuccess).error(handleHTTPErrors);
+                        .success(handleSuccess)
+                        .error(handleHTTPErrors);
                 }
             };
 
