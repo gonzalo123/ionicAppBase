@@ -46,7 +46,7 @@
                     return deferred.promise;
                 },
 
-                getUser: function() {
+                getUser: function () {
                     return user;
                 },
 
@@ -155,6 +155,10 @@
                     token = _token;
                 },
 
+                getToken: function () {
+                    return token;
+                },
+
                 getBackground: function (uri, params) {
                     return http.get(uri, params, true);
                 },
@@ -164,26 +168,32 @@
                 },
 
                 get: function (uri, params, hideLoading) {
+                    var response;
                     if (!hideLoading) {
                         $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
                     }
                     params = extendParams(params);
 
-                    return $http
-                        .get(serviceHost + uri, {params: params})
-                        .success(handleSuccess)
-                        .error(handleHTTPErrors);
+                    response = $http.get(serviceHost + uri, {params: params});
+
+                    response.success(handleSuccess);
+                    response.error(handleHTTPErrors);
+
+                    return response;
                 },
 
                 post: function (uri, params, hideLoading) {
+                    var response;
+
                     if (!hideLoading) {
                         $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
                     }
                     params = extendParams(params);
-                    return $http
-                        .post(serviceHost + uri, params)
-                        .success(handleSuccess)
-                        .error(handleHTTPErrors);
+                    response = $http.post(serviceHost + uri, params);
+                    response.success(handleSuccess);
+                    response.error(handleHTTPErrors);
+
+                    return response;
                 }
             };
 
@@ -339,5 +349,4 @@
                 "    </ion-content>" +
                 "</ion-view>");
         }]);
-
 })();

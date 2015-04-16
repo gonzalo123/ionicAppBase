@@ -46,7 +46,7 @@
                     return deferred.promise;
                 },
 
-                getUser: function() {
+                getUser: function () {
                     return user;
                 },
 

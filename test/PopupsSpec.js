@@ -1,4 +1,4 @@
-describe('PopupsMock', function () {
+describe('PopupsSpec', function () {
 
     beforeEach(module('G'));
 
