@@ -30,6 +30,7 @@ describe('UserService', function () {
     it('do login with bad credentials', inject(function (http, locker, $q, UserService) {
         expect(UserService).toBeDefined();
         spyOn(http, 'setToken');
+
         spyOn(http, 'post').and.returnValue({
             success: function (onSuccess) {
                 var response = {

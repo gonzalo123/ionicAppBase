@@ -168,18 +168,15 @@
                 },
 
                 get: function (uri, params, hideLoading) {
-                    var response;
                     if (!hideLoading) {
                         $ionicLoading.show({template: '<ion-spinner></ion-spinner>'});
                     }
                     params = extendParams(params);
 
-                    response = $http.get(serviceHost + uri, {params: params});
+                    return $http.get(serviceHost + uri, {params: params})
 
-                    response.success(handleSuccess);
-                    response.error(handleHTTPErrors);
-
-                    return response;
+                        .success(handleSuccess)
+                        .error(handleHTTPErrors);
                 },
 
                 post: function (uri, params, hideLoading) {
@@ -190,6 +187,7 @@
                     }
                     params = extendParams(params);
                     response = $http.post(serviceHost + uri, params);
+
                     response.success(handleSuccess);
                     response.error(handleHTTPErrors);
 
@@ -349,4 +347,5 @@
                 "    </ion-content>" +
                 "</ion-view>");
         }]);
+
 })();
