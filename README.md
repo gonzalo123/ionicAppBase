@@ -24,3 +24,16 @@
 </body>
 </html>
 ```
+
+````json
+{
+  "name": "appName",
+  "app_id": "",
+  "proxies": [
+        {
+          "path": "/api",
+          "proxyUrl": "http://localhost:8080"
+        }
+      ]
+}
+```
